@@ -1,0 +1,81 @@
+ .tweet {
+  position: relative;
+  height: 150px;
+  /* box-shadow: 10px 5px 5px rgb(128, 142, 226); */
+  border: 2px solid black;
+  margin-bottom: 1em;
+  
+
+
+ }
+ .tweet:hover {
+  box-shadow: 10px 5px 5px rgb(128, 142, 226);
+
+
+ }
+ .tweet:hover .tweeterhandle {
+  opacity: 1;
+ }
+
+ .tweetlibraryheader {
+  position: relative;
+  height: 10px;
+  margin: .5em;
+  width: 96%;
+  
+}
+ .tweetlibraryheader .displayname {
+  position: absolute;
+  left: 5%;
+  
+}
+.tweetlibraryheader .displayname .displayimage {
+  height: 30px;
+  width: 30px;
+}
+
+ .tweetlibraryheader .tweeterhandle {
+  position: absolute;
+  right: 5%;
+  
+  background: -webkit-linear-gradient(#eee,  rgb(128, 142, 226));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  
+
+  
+}
+
+.tweeterlibrarytweet {
+  height: 50px;
+  border-bottom: 2px solid black;
+  margin: .5em;
+  
+  padding: 1.5em;
+  padding-top: 1.5em;
+  width: 96%;
+  
+
+
+}
+.tweetlibraryfooter {
+  position: relative;
+  height: 20px;
+
+}
+
+.tweetlibraryfooter .tweetdate {
+  position: absolute;
+  left: 5%;
+  font-size: 12px;
+}
+  
+
+.tweetlibraryfooter .frl {
+  position: absolute;
+  right: 5%;
+  font-size: 12px;
+  color: blue; 
+  
+}

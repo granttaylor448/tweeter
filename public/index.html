@@ -6,24 +6,120 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <!-- Google fonts i imported -->
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:300,300i,700,700i&display=swap" rel="stylesheet">
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+    <!-- Navigation Bar -->
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+    <!-- Header -->
+    <link rel="stylesheet" href="/styles/headers.css" type="text/css" />
+    
+    <!-- New Tweet -->
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+
+    <!-- Tweet Library -->
+    <link rel="stylesheet" href="/styles/tweet-library.css" type="text/css" />
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
-    <!-- App JS -->
+
+    <!-- App JS >
     <script type="text/javascript" src="/scripts/client.js"></script>
   </head>
 
   <body>
+    
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span>tweeter</span>
-    </nav>
+      <span class="navtitle"> tweeter</span>
 
+      <span class="subspan"><b>Write</b> a new tweet<br/> <div class="arrow"> &#8681;</div></span> 
+    
+    </nav>
+    
+    <header class ="mainheader">
+        <div>
+            <img class="headerimage" src="/images/av.png"> 
+        </div>
+        <br>
+        <div>
+            <h2>Grant Taylor</h2>
+        </div>
+    </header>
     <!-- Page-specific (main) content here -->
-    <main class="container"></main>
+    <main class="container">
+        <section class="new-tweet">
+            <h2>Compose Tweet</h2>
+            <form>
+              <div>
+                <textarea id="twittertext" class= "textarea" name="text" placeholder="What are you humming about?"></textarea>
+                <div class="form-footer">
+                  <input class="button" type="submit" value="Tweet">
+                <!-- </div> -->
+                  <span id="counter" class="counter">0</span>
+                </div>
+              </div>
+            </form>
+        </section>
+        <section id='tweets-container'> </section>
+        <!-- <article id='#tweets-container'></article> -->
+        <!-- <section > -->
+          <!-- <article id="tweetlibrary"> -->
+            <!-- <header class="tweetlibraryheader">                -->
+              <!-- <div class="displayname">  -->
+                  <!-- <img class= "displayimage" src="/images/av.png">  -->
+                  <!-- Username -->
+              <!-- </div> -->
+              <!-- <div class="tweeterhandle"> -->
+                <!-- @TweeterHandle -->
+              <!-- </div> -->
+            <!-- </header> -->
+            <!-- <p class="tweeterlibrarytweet"> This is my awesome tweet!</p> -->
+            <!-- <footer class="tweetlibraryfooter">  -->
+              <!-- <div class="tweetdate"> -->
+              <!-- 10 days ago -->
+              <!-- </div> -->
+              <!-- <div class="frl"> -->
+                <!-- Flag, RT, Like -->
+              <!-- </div> -->
+            <!-- </footer> -->
+<!--  -->
+          <!-- </article> -->
+        <!-- </section> -->
+        <!-- <section> -->
+            <!-- <article > -->
+              <!-- <header class="tweetlibraryheader">                -->
+                <!-- <div class="displayname">  -->
+                    <!-- <img class= "displayimage" src="/images/av.png">  -->
+                    <!-- ${tweet.username} -->
+                <!-- </div> -->
+                <!-- <div class="tweeterhandle"> -->
+                  <!-- @TweeterHandle -->
+                <!-- </div> -->
+              <!-- </header> -->
+              <!-- <p class="tweeterlibrarytweet"> ${tweet.tweet}</p> -->
+              <!-- <footer class="tweetlibraryfooter">  -->
+                <!-- <div class="tweetdate"> -->
+                <!-- ${tweet.date} -->
+                <!-- </div> -->
+                <!-- <div class="frl"> -->
+                  <!-- Flag, RT, Like -->
+                <!-- </div> -->
+              <!-- </footer> -->
+  <!--  -->
+            <!-- </article> -->
+          <!-- </section> -->
+        
+        <!-- <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> -->
+    </main>
+    
+     <!-- Char Counter JS -->
+     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+     <!-- Client side functiond -->
+     <script type="text/javascript" src="/scripts/client.js"></script>
   </body>
 </html>
