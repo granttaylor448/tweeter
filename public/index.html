@@ -9,6 +9,9 @@
     <!-- Google fonts i imported -->
     <link href="https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:300,300i,700,700i&display=swap" rel="stylesheet">
 
+    <!-- Icon Import Library -->
+    <link href="https://fonts.googleapis.com/css?family=Bungee%7CSource+Sans+Pro:300,600&display=swap" rel="stylesheet">
+
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
@@ -25,6 +28,7 @@
     <link rel="stylesheet" href="/styles/tweet-library.css" type="text/css" />
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+    
 
 
     <!-- App JS >
@@ -37,7 +41,7 @@
     <nav>
       <span class="navtitle"> tweeter</span>
 
-      <span class="subspan"><b>Write</b> a new tweet<br/> <div class="arrow"> &#8681;</div></span> 
+      <span class="subspan"><b>Write</b> a new tweet<br/> <div id="dancingarrow" class="arrow"> &#8681;</div></span> 
     
     </nav>
     
@@ -47,18 +51,18 @@
         </div>
         <br>
         <div>
-            <h2>Grant Taylor</h2>
+            <h2>Grant Taylor </h2>
         </div>
     </header>
     <!-- Page-specific (main) content here -->
     <main class="container">
-        <section class="new-tweet">
+        <section id="new-tweet" class="new-tweet">
             <h2>Compose Tweet</h2>
-            <form>
+            <form id="tweet-form">
               <div>
                 <textarea id="twittertext" class= "textarea" name="text" placeholder="What are you humming about?"></textarea>
                 <div class="form-footer">
-                  <input class="button" type="submit" value="Tweet">
+                  <input id="addtweet" class="button" type="submit" value="Tweet">
                 <!-- </div> -->
                   <span id="counter" class="counter">0</span>
                 </div>
@@ -116,10 +120,10 @@
         
         <!-- <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> -->
     </main>
-    
+    <!-- Client side functiond -->
+    <script type="text/javascript" src="/scripts/client.js"></script>
      <!-- Char Counter JS -->
      <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
-     <!-- Client side functiond -->
-     <script type="text/javascript" src="/scripts/client.js"></script>
+     
   </body>
 </html>

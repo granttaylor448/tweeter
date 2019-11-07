@@ -2,9 +2,9 @@ $(document).ready(function() {
   console.log("document ready!")
 });
 
-document.addEventListener("click", (event) => {
-  console.log("click!!!!!!!");
-});
+// document.addEventListener("click", (event) => {
+  // console.log("click!!!!!!!");
+// });
 
 // let element = document.getElementById("twittertext");
 // 
@@ -35,6 +35,31 @@ $("#twittertext").keyup(function() {
   $(this).next().children().eq(1).empty().append(count);
   
 });
+
+$(document).ready(function() {
+  $('#new-tweet').hide()
+});
+$("#dancingarrow").click(function() {
+  $(this).animate({ padding: "0em" }, 'fast')
+  $(this).animate({ opacity: "1"}, "fast")
+  $('#new-tweet').slideToggle("fast");
+  // $("#new-tweet").animate({marginTop: "+=50px"})
+  
+  $(this).animate({ padding: "0.5em"}, 'fast')
+  $(this).animate({ opacity: ".5"}, "fast")
+  
+});
+// $("#dancingarrow").click(function() {
+  // $('#new-tweet').show()
+// }, function () {
+  // $('#new-tweet').show()
+// });
+
+// $("#dancingarrow").click(function() {
+  // $("new-tweet".css(
+    // 
+  // )
+// });
 
 // $(".tweet").hover(
   // function(){

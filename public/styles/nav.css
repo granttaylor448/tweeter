@@ -8,10 +8,8 @@ nav {
   color: #FFFF;
   background-color: #4056A1;
   font-family: 'Bungee', cursive;
-  z-index: 2;
+  z-index: 3;
   top: 0;
-  
-  
 }
 
 .navtitle {

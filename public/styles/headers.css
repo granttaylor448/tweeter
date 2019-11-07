@@ -11,7 +11,7 @@
   background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
   
   text-align: center;
-  /* z-index: 0; */
+  z-index: 2;
 }
 
 .headerimage {

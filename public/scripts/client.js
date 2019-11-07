@@ -15,48 +15,52 @@ const tweetData = {
   "created_at": 1461116232227
 }
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
+// const data = [
+  // {
+    // "user": {
+      // "name": "Newton",
+      // "avatars": "https://i.imgur.com/73hZDYK.png"
+      // ,
+      // "handle": "@SirIsaac"
+    // },
+    // "content": {
+      // "text": "If I have seen further it is by standing on the shoulders of giants"
+    // },
+    // "created_at": 1461116232227
+  // },
+  // {
+    // "user": {
+      // "name": "Descartes",
+      // "avatars": "https://i.imgur.com/nlhLi3I.png",
+      // "handle": "@rd" },
+    // "content": {
+      // "text": "Je pense , donc je suis"
+    // },
+    // "created_at": 1461113959088
+  // }
+// ]
+const escape =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
 
  const createTweetElement = function (tweet) {
-   console.log(tweet)
+ 
     return (`<article  class='tweet'>
               <header class="tweetlibraryheader">               
                 <div class="displayname"> 
-                    <img class= "displayimage" src=${tweet.user.avatars}> 
-                    ${tweet.user.name}
+                    <img class= "displayimage" src=${escape(tweet.user.avatars)}> 
+                    ${escape(tweet.user.name)}
                 </div>
                 <div class="tweeterhandle">
-                ${tweet.user.handle}
+                ${escape(tweet.user.handle)}
                 </div>
               </header>
-              <p class="tweeterlibrarytweet"> ${tweet.content.text}</p>
+              <p class="tweeterlibrarytweet"> ${escape(tweet.content.text)}</p>
               <footer class="tweetlibraryfooter"> 
                 <div class="tweetdate">
-                ${tweet.created_at}
+                ${escape(tweet.created_at)}
                 </div>
                 <div class="frl">
                   Flag, RT, Like
@@ -76,13 +80,14 @@ const data = [
 
 function renderTweets (tweets) {
   const articles = $('#tweets-container')
+  tweets.reverse();
   tweets.forEach((tweet) => {
     articles.append(createTweetElement(tweet))
   });
 }
-$(document).ready(function() {
-renderTweets(data);
-});
+// $(document).ready(function() {
+// renderTweets(data);
+// });
 
 
 
@@ -95,27 +100,67 @@ renderTweets(data);
 
 // Test / driver code (temporary). Eventually will get this from the server.
 
+const ifError = function () {
+  if (document.getElementsByClassName("error").length === 0){
+    return true
+  } else {
+    return false;
+  }
+}
 
+$(function() {
+  const $button = $('#tweet-form');
+  const articles = $('#tweets-container')
+  $button.on('submit', function (event) {
+    let tweetfield= $('#twittertext').val()
+    event.preventDefault();
+    $(".error").remove()
+    if (tweetfield === "" || tweetfield === null) {
+    if (ifError() === true) {
+      $("#new-tweet").prepend(`<p class="error">  You didn't type anything!  </p>`) 
+      } 
+    }
+    if (tweetfield.length > 140) {
+      if (ifError() === true) {
+      $("#new-tweet").prepend(`<p class="error"> ^ Easy Shakespeare! You're over your character count! ^</p>`)
+      
+      }
+    }  else {
+    // console.log('Button clicked, performing ajax call...');
+    // console.log( $("#twittertext").serialize() );
+    let tweetinput = $("#twittertext").serialize()
+    
+    $.ajax({
+      type:"POST",
+      url: "/tweets",
+      data: tweetinput,
+      // dataType: {},
+      success: function (res) {
+        $('#tweets-container').prepend(createTweetElement(res))
+      }
+       // (data => articles.append(createTweetElement(data)))
+      
+      
+    });
+  }
+  
+    
 
+   
+    // $.ajax({
+      // type: "POST",
+      // url: ""
+    // }); 
+  });
+  $.ajax({
+    url: "/tweets",
+    success: ( tweetinput => renderTweets(tweetinput))
+  })
+});
 
-
-
-
-
-
-// console.log($tweet); // to see what it looks like
-// $('#tweets-container').append($tweet); 
-
-
-// const createTweetElement = function (object) {
-  // let $tweet = $('<article>').addClass('tweet');
-  // let newObj = {}
-  // let username = object.user.name
-  // let handle = object.user.handle
-  // let tweet = object.content.text
-  // let date = object.created_at
-// 
-  // $tweet[tweet] = {username: username, handle: handle, tweet: tweet, date: date }
-  // return newObj
-  // return $tweet;
-// }
+// $(document).ready(function() {
+  // $("#twittertext").on ("submit", function (event) {
+    // event.preventDefault();
+    // console.log( $(this).serialize() );
+  // });
+// });
