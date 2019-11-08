@@ -6,6 +6,8 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <!-- Icon library -->
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts i imported -->
     <link href="https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:300,300i,700,700i&display=swap" rel="stylesheet">
 
@@ -28,23 +30,16 @@
     <link rel="stylesheet" href="/styles/tweet-library.css" type="text/css" />
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
-    
-
-
-    <!-- App JS >
-    <script type="text/javascript" src="/scripts/client.js"></script>
+    <!-- Tag to disable viewport zooming NOT WORKING ??? -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
   </head>
 
   <body>
-    
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span class="navtitle"> tweeter</span>
-
-      <span class="subspan"><b>Write</b> a new tweet<br/> <div id="dancingarrow" class="arrow"> &#8681;</div></span> 
-    
+      <span class="navtitle"> tweeter </span>
+      <button class="subspan" ><b>Write</b> a new tweet<br/> <div id="dancingarrow" class="arrow"> <i class="fa fa-angle-double-down"></i> </div></button> 
     </nav>
-    
     <header class ="mainheader">
         <div>
             <img class="headerimage" src="/images/av.png"> 
@@ -54,71 +49,23 @@
             <h2>Grant Taylor </h2>
         </div>
     </header>
-    <!-- Page-specific (main) content here -->
+    <!-- Drop down on click new-tweet bar -->
     <main class="container">
         <section id="new-tweet" class="new-tweet">
-            <h2>Compose Tweet</h2>
+            <!-- Compose Tweet -->
             <form id="tweet-form">
               <div>
                 <textarea id="twittertext" class= "textarea" name="text" placeholder="What are you humming about?"></textarea>
                 <div class="form-footer">
                   <input id="addtweet" class="button" type="submit" value="Tweet">
                 <!-- </div> -->
-                  <span id="counter" class="counter">0</span>
+                  <span id="counter" class="counter">140</span>
                 </div>
               </div>
             </form>
         </section>
+        <!-- Tweet Library where all tweets in the database are stored -->
         <section id='tweets-container'> </section>
-        <!-- <article id='#tweets-container'></article> -->
-        <!-- <section > -->
-          <!-- <article id="tweetlibrary"> -->
-            <!-- <header class="tweetlibraryheader">                -->
-              <!-- <div class="displayname">  -->
-                  <!-- <img class= "displayimage" src="/images/av.png">  -->
-                  <!-- Username -->
-              <!-- </div> -->
-              <!-- <div class="tweeterhandle"> -->
-                <!-- @TweeterHandle -->
-              <!-- </div> -->
-            <!-- </header> -->
-            <!-- <p class="tweeterlibrarytweet"> This is my awesome tweet!</p> -->
-            <!-- <footer class="tweetlibraryfooter">  -->
-              <!-- <div class="tweetdate"> -->
-              <!-- 10 days ago -->
-              <!-- </div> -->
-              <!-- <div class="frl"> -->
-                <!-- Flag, RT, Like -->
-              <!-- </div> -->
-            <!-- </footer> -->
-<!--  -->
-          <!-- </article> -->
-        <!-- </section> -->
-        <!-- <section> -->
-            <!-- <article > -->
-              <!-- <header class="tweetlibraryheader">                -->
-                <!-- <div class="displayname">  -->
-                    <!-- <img class= "displayimage" src="/images/av.png">  -->
-                    <!-- ${tweet.username} -->
-                <!-- </div> -->
-                <!-- <div class="tweeterhandle"> -->
-                  <!-- @TweeterHandle -->
-                <!-- </div> -->
-              <!-- </header> -->
-              <!-- <p class="tweeterlibrarytweet"> ${tweet.tweet}</p> -->
-              <!-- <footer class="tweetlibraryfooter">  -->
-                <!-- <div class="tweetdate"> -->
-                <!-- ${tweet.date} -->
-                <!-- </div> -->
-                <!-- <div class="frl"> -->
-                  <!-- Flag, RT, Like -->
-                <!-- </div> -->
-              <!-- </footer> -->
-  <!--  -->
-            <!-- </article> -->
-          <!-- </section> -->
-        
-        <!-- <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> -->
     </main>
     <!-- Client side functiond -->
     <script type="text/javascript" src="/scripts/client.js"></script>

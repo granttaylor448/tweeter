@@ -1,53 +1,12 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-    },
-  "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-  "created_at": 1461116232227
-}
-
-// const data = [
-  // {
-    // "user": {
-      // "name": "Newton",
-      // "avatars": "https://i.imgur.com/73hZDYK.png"
-      // ,
-      // "handle": "@SirIsaac"
-    // },
-    // "content": {
-      // "text": "If I have seen further it is by standing on the shoulders of giants"
-    // },
-    // "created_at": 1461116232227
-  // },
-  // {
-    // "user": {
-      // "name": "Descartes",
-      // "avatars": "https://i.imgur.com/nlhLi3I.png",
-      // "handle": "@rd" },
-    // "content": {
-      // "text": "Je pense , donc je suis"
-    // },
-    // "created_at": 1461113959088
-  // }
-// ]
 const escape =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-}
+};
 
- const createTweetElement = function (tweet) {
- 
-    return (`<article  class='tweet'>
+const createTweetElement = function(tweet) {
+  let ago = timeSince(tweet.created_at);
+  return (`<article  class='tweet'>
               <header class="tweetlibraryheader">               
                 <div class="displayname"> 
                     <img class= "displayimage" src=${escape(tweet.user.avatars)}> 
@@ -57,110 +16,107 @@ const escape =  function(str) {
                 ${escape(tweet.user.handle)}
                 </div>
               </header>
-              <p class="tweeterlibrarytweet"> ${escape(tweet.content.text)}</p>
+              <div class="tweeterlibrarytweet"><div class="tweet-display"> ${escape(tweet.content.text)} </div></div>
               <footer class="tweetlibraryfooter"> 
                 <div class="tweetdate">
-                ${escape(tweet.created_at)}
+                ${ago} ago
                 </div>
                 <div class="frl">
-                  Flag, RT, Like
+                <i class="fa fa-flag"></i> <i class="fa fa-retweet"></i> <i class="fa fa-heart"></i>
                 </div>
               </footer>
               </article>`
-            
-            );
+  );
+};
 
-}
-// $(document).ready(function() {
-// const $tweet = createTweetElement(tweet);
-// console.log($tweet);
-// $('#tweets-container').append($tweet);
-// 
-// });
-
-function renderTweets (tweets) {
-  const articles = $('#tweets-container')
+function renderTweets(tweets) {
+  const articles = $('#tweets-container');
   tweets.reverse();
   tweets.forEach((tweet) => {
-    articles.append(createTweetElement(tweet))
+    articles.append(createTweetElement(tweet));
   });
 }
-// $(document).ready(function() {
-// renderTweets(data);
-// });
 
-
-
-
-
-
-
-// const $tweet = $("<article>").addClass("tweet");
-
-
-// Test / driver code (temporary). Eventually will get this from the server.
-
-const ifError = function () {
-  if (document.getElementsByClassName("error").length === 0){
-    return true
+const ifError = function() {
+  if (document.getElementsByClassName("error").length === 0) {
+    return true;
   } else {
     return false;
   }
-}
+};
 
 $(function() {
   const $button = $('#tweet-form');
-  const articles = $('#tweets-container')
-  $button.on('submit', function (event) {
-    let tweetfield= $('#twittertext').val()
+  $button.on('submit', function(event) {
+    let tweetfield = $('#twittertext').val();
     event.preventDefault();
-    $(".error").remove()
+    $(".error").remove();
     if (tweetfield === "" || tweetfield === null) {
-    if (ifError() === true) {
-      $("#new-tweet").prepend(`<p class="error">  You didn't type anything!  </p>`) 
-      } 
+      if (ifError() === true) {
+        $("#new-tweet").prepend(`<p class="error"> <i class="fa fa-exclamation-triangle"></i> You didn't type anything! <i class="fa fa-exclamation-triangle"></i> </p>`);
+      }
     }
     if (tweetfield.length > 140) {
+    // tweetfield does not empty if tweet is too long so user doesn't lose their input!
       if (ifError() === true) {
-      $("#new-tweet").prepend(`<p class="error"> ^ Easy Shakespeare! You're over your character count! ^</p>`)
-      
+        $("#new-tweet").prepend(`<p class="error"> <i class="fa fa-exclamation-triangle"></i> Easy Shakespeare! You're over your character count! <i class="fa fa-exclamation-triangle"></i></p>`);
       }
-    }  else {
-    // console.log('Button clicked, performing ajax call...');
-    // console.log( $("#twittertext").serialize() );
-    let tweetinput = $("#twittertext").serialize()
-    
-    $.ajax({
-      type:"POST",
-      url: "/tweets",
-      data: tweetinput,
-      // dataType: {},
-      success: function (res) {
-        $('#tweets-container').prepend(createTweetElement(res))
-      }
-       // (data => articles.append(createTweetElement(data)))
-      
-      
-    });
-  }
-  
-    
-
-   
-    // $.ajax({
-      // type: "POST",
-      // url: ""
-    // }); 
+    } else {
+      let tweetinput = $("#twittertext").serialize();
+      $.ajax({
+        type:"POST",
+        url: "/tweets",
+        data: tweetinput,
+        // dataType: {},
+        success: function(res) {
+          $('#tweets-container').prepend(createTweetElement(res));
+        }
+      });
+      $('#twittertext').val("");
+      $('#counter').replaceWith(`<span id="counter" class="counter">140</span>`);
+    }
   });
   $.ajax({
     url: "/tweets",
-    success: ( tweetinput => renderTweets(tweetinput))
-  })
+    success: (tweetinput => renderTweets(tweetinput))
+  });
 });
 
-// $(document).ready(function() {
-  // $("#twittertext").on ("submit", function (event) {
-    // event.preventDefault();
-    // console.log( $(this).serialize() );
-  // });
-// });
+$(document).ready(function() {
+  $('#new-tweet').hide();
+});
+
+$(".subspan").click(function() {
+  $('#new-tweet').slideToggle("fast");
+  $('#twittertext').focus();
+  $("#dancingarrow").slideToggle("fast");
+});
+
+
+const timeSince = function(date) {
+  // source =====> https://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
+
+  let seconds = Math.floor((new Date() - date) / 1000);
+  let interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes";
+  }
+  return Math.floor(seconds) + " seconds";
+};

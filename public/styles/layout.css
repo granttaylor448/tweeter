@@ -10,14 +10,6 @@ html {
   box-sizing: inherit;
 }
 
-/*
- * Global layout stuff
- */
-
-
-
-
-
 main {
   margin: 0px 5%;
   width: 90%;
@@ -32,10 +24,29 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   padding-top: 120px;
 }
-/* nav { */
-  /* font-family: 'Bungee', cursive; */
-/* } */
+@media only screen and (min-width: 1024px) {
+ 
+  .nav {
+    width: 1024px;
+    margin: 0 auto;
+  }
+  .mainheader {
+    width: 30%;
+    float: left;
+    margin: 3em;
+    margin-right: 1em;
+  }
+  .tweet {
+    width: 60%;
+    float: right;
+    margin-top: 3em;
+  }
+  .new-tweet {
+    width: 60%;
+    float: right;
+    /* border: 5em; */
+    margin-top: 3em;
+  }
+  
+}
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */

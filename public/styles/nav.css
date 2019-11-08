@@ -1,8 +1,5 @@
 nav {
-  
-
   position: fixed;
- 
   height: 120px;
   width: 100%;
   color: #FFFF;
@@ -15,25 +12,40 @@ nav {
 .navtitle {
   float: left;
   padding: 1.5em;
-  
+  padding-right: 0;
 }
 
 .subspan {
   float: right;
-  padding: 1.5em;
+  margin: 1.5em;
   font-size: 20px;
+  color: white;
   font-family: 'Source Sans Pro', sans-serif;
+  background-color:  #4056A1;
+  border: none;
+  padding-left: 0;
+  
 }
 .arrow {
-  
-  margin-right: auto;
-  margin-left: auto; 
+  animation: MoveUpDown 2s linear infinite;
+  position: fixed;
+  margin: auto;
   color: red;
-  padding: 0 ;
-  text-align: center;
- 
+  padding-left: 3em ;
   
 }
+@keyframes MoveUpDown {
+  48% {
+    top: 48px;
+  }
+  50% {
+    top: 55px;
+  }
+}
+
+
+
+
 
 
 
