@@ -6,7 +6,7 @@
 }
 
 .textarea {
-  height: 40px;
+  height: auto;
   width: 100%;
   font-weight: bold;
   border: none;
